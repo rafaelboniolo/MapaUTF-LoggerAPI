@@ -6,6 +6,7 @@ import Auth from "./security/Auth";
 import mongoConfig from "./database/mongoConfig";
 import cors from 'cors'
 
+require('dotenv').config();
 
 class App {
     public express: express.Application;
@@ -26,7 +27,7 @@ class App {
     }
 
     private database(): void {
-        mongoose.connect(mongoConfig, { useNewUrlParser: true });
+        mongoose.connect(process.env.MONGO_URL||mongoConfig, { useNewUrlParser: true });
     }
 
     private routes(): void {
