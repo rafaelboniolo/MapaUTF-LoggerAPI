@@ -1,6 +1,4 @@
 import {Request, Response} from 'express'
-import { ObjectID } from 'bson';
-import mongoose from 'mongoose'
 import { Log } from '../schemas/Log';
 
 class LogController{
@@ -16,8 +14,15 @@ class LogController{
     }
 
     public async list(req:Request, res:Response):Promise<Response>{
+        const {start, end} = req.params;
+    
         try {
-            const logs = await Log.find();
+            const logs = await Log.find({
+                date: {
+                    $gt:  start,
+                    $lt:  end
+            }});
+            
             return res.json(logs);
         } catch (error) {
             return res.status(400).send();

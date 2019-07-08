@@ -7,7 +7,7 @@ import LogController from './controllers/LogController';
 
 const routes = Router();
 
-routes.get("/java/logger",       LogController.list);
+routes.get("/java/logger/:start/:end",       LogController.list);
 routes.post("/java/logger",       LogController.create);
 
 routes.get("/monitor", RequestMonitorController.list)
@@ -15,3 +15,5 @@ routes.get("/monitor", RequestMonitorController.list)
 
 
 export default routes;
+
+
