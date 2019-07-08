@@ -14,15 +14,9 @@ class LogController{
     }
 
     public async list(req:Request, res:Response):Promise<Response>{
-        const {start, end} = req.params;
     
         try {
-            const logs = await Log.find({
-                date: {
-                    $gt:  start,
-                    $lt:  end
-            }});
-            
+            const logs = await Log.find();
             return res.json(logs);
         } catch (error) {
             return res.status(400).send();
